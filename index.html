@@ -1,11 +1,11 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>FEU Grade Calculator — Launch Activator</title>
-  <meta name="description" content="Launch FEU Grade Calculator Activator" />
-  <link rel="canonical" href="https://feu.jareddo06.ovh/" />
+  <title>FEU Grade Calculator — Activation Web App</title>
+  <meta name="description" content="Official activation web app for FEU Grade Calculator. Activate, configure, and manage your copy securely through Google Apps Script." />
+  <link rel="canonical" href="https://feu.jareddo06.ovh/app" />
   <link rel="icon" href="https://ssl.gstatic.com/docs/doclist/images/icon_11_spreadsheet_list.png" type="image/png" />
   <style>
     :root {
@@ -29,66 +29,133 @@
       text-align: center;
       padding: 48px 16px 56px;
     }
-    header h1 { margin: 0; font-size: 2rem; letter-spacing: 0.3px; }
-    header p { max-width: 700px; margin: 10px auto 0; font-weight: 400; font-size: 1.05rem; opacity: 0.9; }
-    main { max-width: var(--maxw); background: var(--card); margin: -40px auto 60px; border-radius: 14px; box-shadow: 0 6px 30px rgba(0,0,0,0.08); padding: 36px 30px; }
-    .cta { display:inline-block; background:var(--accent2); color:white; padding: 14px 24px; border-radius:8px; font-weight:600; font-size:1rem; border:none; cursor:pointer; text-decoration:none; }
-    .cta:hover { background:#256427; }
-    label { font-weight:600; display:block; margin-top:12px; }
-    input[type="text"] { width:100%; padding:12px; margin-top:8px; border-radius:6px; border:1px solid #ccc; font-size:1rem; }
-    p.note { color:var(--muted); margin-top:12px; }
-    footer { text-align:center; font-size:13px; color:var(--muted); margin-top:40px; }
-    footer a { color:var(--accent); }
+    header h1 {
+      margin: 0;
+      font-size: 2rem;
+      letter-spacing: 0.3px;
+    }
+    header p {
+      max-width: 700px;
+      margin: 10px auto 0;
+      font-weight: 400;
+      font-size: 1.05rem;
+      opacity: 0.9;
+    }
+    main {
+      max-width: var(--maxw);
+      background: var(--card);
+      margin: -40px auto 60px;
+      border-radius: 14px;
+      box-shadow: 0 6px 30px rgba(0, 0, 0, 0.08);
+      padding: 36px 30px;
+    }
+    h2 {
+      color: var(--accent);
+      border-left: 4px solid var(--accent2);
+      padding-left: 10px;
+      margin-top: 34px;
+      margin-bottom: 10px;
+      font-size: 1.4rem;
+    }
+    p, li {
+      color: #222;
+    }
+    a {
+      color: var(--accent2);
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    .cta {
+      display: inline-block;
+      background: var(--accent2);
+      color: white;
+      padding: 14px 24px;
+      font-weight: 600;
+      border-radius: 8px;
+      font-size: 1rem;
+      margin-top: 14px;
+      transition: background 0.2s ease;
+      border: none;
+      cursor: pointer;
+    }
+    .cta:hover {
+      background: #256427;
+    }
+    ul {
+      margin-left: 1.2rem;
+    }
+    hr {
+      margin: 40px 0;
+      border: none;
+      border-top: 1px solid #eee;
+    }
+    footer {
+      text-align: center;
+      font-size: 13px;
+      color: var(--muted);
+      margin-top: 40px;
+    }
+    footer a {
+      color: var(--accent);
+    }
+    input[type="text"] {
+      width: 100%;
+      padding: 12px;
+      font-size: 1rem;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      margin-top: 10px;
+    }
   </style>
 </head>
 <body>
   <header>
-    <h1>FEU Grade Calculator</h1>
-    <p>Paste your Spreadsheet URL or ID below to open the Activator.</p>
+    <h1>FEU Grade Calculator Activation</h1>
+    <p>Activate your spreadsheet and connect securely through Google Apps Script.</p>
   </header>
 
   <main>
-    <label for="sheetInput">Spreadsheet URL or ID</label>
-    <input id="sheetInput" type="text" placeholder="Paste full URL or just the ID (e.g. 1OGZKkXOVmqk...)" />
-    <div style="margin-top:14px;">
-      <button id="openActivatorBtn" class="cta">Open Activator</button>
-    </div>
+    <h2>Activate Your Spreadsheet</h2>
+    <p>
+      Enter your Spreadsheet link or ID below:<br>
+      (Example: <code>https://docs.google.com/spreadsheets/d/1OGZKkXOVmqkOobwyutm80UWmTUQWMXjqXGlre93Iwnc/edit?usp=sharing</code>)
+    </p>
 
-    <p class="note">If you have the sheet open, copy the long string between <code>/d/</code> and <code>/edit</code> from the URL. The Activator will open and prompt you to authorize if required.</p>
+    <form id="activationForm">
+      <input type="text" id="sheetId" placeholder="Spreadsheet link or ID" required>
+      <button type="submit" class="cta">🚀 Launch Activation</button>
+    </form>
+
+    <p id="result" style="margin-top:20px;font-weight:500;"></p>
   </main>
 
   <footer>
-    <p>© 2025 FEU Grade Calculator — <a href="/privacy">Privacy Policy</a></p>
+    <p>&copy; 2025 FEU Grade Calculator | <a href="/privacy">Privacy Policy</a></p>
   </footer>
 
   <script>
-    // Extracts spreadsheet ID from a pasted URL or raw ID
-    function extractId(input) {
-      if (!input) return "";
-      input = input.trim();
-      // If it looks like a full URL with /d/<id>/
-      const match = input.match(/\/d\/([a-zA-Z0-9-_]{20,})/);
-      if (match && match[1]) return match[1];
-      // If it looks like just the id
-      const idOnly = input.match(/^([a-zA-Z0-9-_]{20,})$/);
-      if (idOnly && idOnly[1]) return idOnly[1];
-      return "";
+    // Function to extract Spreadsheet ID from URL or raw input
+    function extractSheetId(input) {
+      const idMatch = input.match(/[-\w]{25,}/);
+      return idMatch ? idMatch[0] : null;
     }
 
-    document.getElementById("openActivatorBtn").addEventListener("click", () => {
-      const v = document.getElementById("sheetInput").value;
-      const id = extractId(v);
-      if (!id) {
-        alert("Please paste a valid spreadsheet URL or ID.");
+    const form = document.getElementById("activationForm");
+    const result = document.getElementById("result");
+
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const input = document.getElementById("sheetId").value.trim();
+      const sheetId = extractSheetId(input);
+      if (!sheetId) {
+        result.textContent = "Invalid Spreadsheet link or ID.";
         return;
       }
-      // redirect to /app with id param
-      window.location.href = `/app?id=${encodeURIComponent(id)}`;
+      result.textContent = "Redirecting...";
+      window.location.href = "/app/?id=" + encodeURIComponent(sheetId);
     });
-
-    // Optional: if the page is opened with ?id= prefill the input (handy for linking from a sheet)
-    const urlId = new URLSearchParams(window.location.search).get("id");
-    if (urlId) document.getElementById("sheetInput").value = urlId;
   </script>
 </body>
 </html>
