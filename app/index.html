@@ -148,7 +148,7 @@
       result.textContent = "Activating...";
       try {
         const res = await fetch(
-          "https://script.google.com/macros/s/AKfycbxboKL8UPk5VuuyqWDCb8x_RZDlGXQ85MgsdjKk4InOvViO4BTbFxWH-TAbg1zGTD7K/exec?id=" + id
+          "https://script.google.com/macros/s/AKfycbxcFRL1VR8_FdMZ0-9JtBdhx4XFpkOHVqam1ex9UuaB6LqCLqQUbj0br07ZG4kpWyEI/exec?id=" + id
         );
         const text = await res.text();
         if (text.toLowerCase().includes("success")) {
