@@ -1,13 +1,102 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Privacy Policy</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Privacy Policy — FEU Grade Calculator Activator</title>
+  <meta name="description" content="Privacy policy for the FEU Grade Calculator activation web app (feu.jareddo06.ovh). Explains what data the app accesses and how it is used." />
+  <link rel="canonical" href="https://feu.jareddo06.ovh/privacy.html" />
+  <style>
+    :root{--bg:#fafafa;--card:#fff;--accent:#1a237e;--muted:#555;--maxw:780px}
+    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,"Helvetica Neue",sans-serif;background:var(--bg);color:#222;margin:0;padding:28px}
+    .wrap{max-width:var(--maxw);margin:30px auto;background:var(--card);border-radius:10px;box-shadow:0 6px 30px rgba(20,30,50,.06);padding:28px}
+    h1{color:var(--accent);margin:0 0 8px;font-size:22px}
+    time{color:var(--muted);font-size:13px}
+    p{line-height:1.55;color:#222;margin:14px 0}
+    .muted{color:var(--muted);font-size:14px}
+    code{background:#f4f6fb;padding:2px 6px;border-radius:4px;font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", monospace}
+    ul{margin-left:1.1rem}
+    a{color:#1b66d1}
+    footer{margin-top:20px;border-top:1px solid #eee;padding-top:12px;font-size:13px;color:var(--muted)}
+    .center{text-align:center}
+  </style>
 </head>
-<body style="font-family:Arial;max-width:700px;margin:40px auto;padding:20px;">
-  <h1>Privacy Policy</h1>
-  <p>This app accesses your Google Sheets only with your permission. It modifies your copy of the FEU Grade Calculator to enable its features, and does not collect, store, or transmit any personal information outside your Google account.</p>
-  <p>Contact: <strong>youremail@yourdomain.com</strong></p>
+<body>
+  <main class="wrap" role="main">
+    <h1>Privacy Policy</h1>
+    <p class="muted">Last updated: <time datetime="2025-10-25">October 25, 2025</time></p>
+
+    <p>
+      This Privacy Policy explains how the <strong>FEU Grade Calculator Activator</strong> (the “App”) accesses and uses data when you run the activation process for your copy of the FEU Grade Calculator spreadsheet. The web frontend is hosted at <a href="https://feu.jareddo06.ovh" target="_blank" rel="noopener">https://feu.jareddo06.ovh</a>.
+    </p>
+
+    <h2>1. What we access</h2>
+    <p>
+      The App uses Google OAuth 2.0 to request permission to access <strong>only</strong> the Google Sheets data you explicitly allow. The App requests these scopes:
+    </p>
+    <ul>
+      <li><code>https://www.googleapis.com/auth/spreadsheets</code> — read and write access to spreadsheets required to populate and configure your copy of the calculator.</li>
+      <li><code>https://www.googleapis.com/auth/script.external_request</code> — enables the frontend to call the Apps Script backend function that runs the activation.</li>
+    </ul>
+
+    <h2>2. How we use the data</h2>
+    <p>
+      When you authorize the App and provide a spreadsheet ID, the Apps Script backend will:
+    </p>
+    <ul>
+      <li>Open your specified spreadsheet copy;</li>
+      <li>Read the range reference you configured (for example <code>Main!AB5</code>) and read source rows from the <code>Raw</code> sheet;</li>
+      <li>Filter and write resulting rows into <code>Main!B6:E15</code> (or write "N/A" when appropriate);</li>
+      <li>Unhide the <code>Main</code> and <code>Raw</code> sheets and delete the <code>README</code> sheet in your copy, as part of the activation flow;</li>
+      <li>Write a small activation flag into a cell (e.g. <code>AA4</code>) so the copy knows activation completed.</li>
+    </ul>
+    <p class="muted">All actions occur only on the spreadsheet you specify and only after you explicitly authorize the App.</p>
+
+    <h2>3. Do we store or share your data?</h2>
+    <p>
+      No. The App <strong>does not</strong> store your spreadsheet contents on external servers, nor does it sell or share your data with third parties. All reading and writing is performed within Google’s infrastructure via Apps Script on the spreadsheet you own or control.
+    </p>
+
+    <h2>4. How to revoke access</h2>
+    <p>
+      You can revoke the App’s access at any time from your Google Account permissions page:
+      <br><a href="https://myaccount.google.com/permissions" target="_blank" rel="noopener">https://myaccount.google.com/permissions</a>
+    </p>
+    <p class="muted">After revocation the App will no longer be able to access or modify your spreadsheet.</p>
+
+    <h2>5. Third-party services</h2>
+    <p>
+      This App uses these third-party services:
+    </p>
+    <ul>
+      <li><strong>Google Apps Script / Google Cloud Platform</strong> — executes the activation logic and accesses the spreadsheet via the scopes you grant. See Google’s privacy policy: <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">policies.google.com/privacy</a>.</li>
+      <li><strong>GitHub Pages</strong> — hosts the static frontend at <a href="https://feu.jareddo06.ovh" target="_blank" rel="noopener">feu.jareddo06.ovh</a>. See GitHub’s privacy statement: <a href="https://docs.github.com/en/site-policy/privacy-policies/github-privacy-statement" target="_blank" rel="noopener">docs.github.com</a>.</li>
+    </ul>
+
+    <h2>6. Security</h2>
+    <p>
+      The App leverages Google’s OAuth 2.0 mechanism and runs within Google Apps Script. Communications are encrypted via HTTPS. We do not transfer or host your spreadsheet data outside Google’s services.
+    </p>
+
+    <h2>7. Children</h2>
+    <p>
+      The App is intended for general academic use and is not directed at children under the age of 13. We do not knowingly collect personal information from children.
+    </p>
+
+    <h2>8. Changes to this policy</h2>
+    <p>
+      We may update this Policy periodically. When we do, we will update the “Last updated” date at the top of this page. Please revisit this page to stay informed of any changes.
+    </p>
+
+    <h2>9. Contact</h2>
+    <p>
+      If you have questions, or want more information about how the App uses data, please contact:
+    </p>
+    <p class="center"><strong>miguel@jareddo06.ovh</strong></p>
+
+    <footer>
+      <p class="muted">FEU Grade Calculator Activator — Hosted at <a href="https://feu.jareddo06.ovh" target="_blank" rel="noopener">feu.jareddo06.ovh</a>. This policy applies only to the activation web app and not to Google’s own policies or to other third-party services.</p>
+    </footer>
+  </main>
 </body>
 </html>
