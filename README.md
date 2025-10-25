@@ -6,7 +6,7 @@ It connects securely with Google Apps Script to enable spreadsheet features such
 ---
 
 ## 🌐 Live App
-👉 [Launch the Web App](https://jareddo-kun.github.io/FEUCalcSite/)
+👉 [Launch the Web App](https://https:/feu.jareddo06.ovh/)
 
 > The app runs directly in your browser and communicates only with **your own Google account** after you grant permission.
 
@@ -36,7 +36,7 @@ This web app:
 - Operates fully within the **Google Apps Script ecosystem**.
 - Is open-source and transparent — you can inspect all scripts directly here.
 
-🔗 [Privacy Policy](https://jareddo-kun.github.io/FEUCalcSite/privacy.html)
+🔗 [Privacy Policy](https://https:/feu.jareddo06.ovh/privacy.html)
 
 ---
 
