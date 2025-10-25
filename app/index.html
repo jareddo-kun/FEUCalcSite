@@ -1,91 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- your stylesheet section stays the same -->
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>FEU Grade Calculator — Activation</title>
-  <meta name="description" content="Activate your FEU Grade Calculator securely through Google Apps Script." />
-  <link rel="icon" href="https://ssl.gstatic.com/docs/doclist/images/icon_11_spreadsheet_list.png" type="image/png" />
+  <title>FEU Grade Calculator — Activation Web App</title>
   <link rel="canonical" href="https://feu.jareddo06.ovh/app" />
+  <link rel="icon" href="https://ssl.gstatic.com/docs/doclist/images/icon_11_spreadsheet_list.png" type="image/png" />
   <style>
-    :root {
-      --bg:#fafafa;--card:#fff;--accent:#1a237e;--accent2:#2e7d32;--muted:#555;--maxw:880px;
-    }
-    body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);margin:0;color:#222;line-height:1.6;}
-    header{background:var(--accent);color:#fff;text-align:center;padding:48px 16px 56px;}
-    header h1{margin:0;font-size:2rem;}
-    header p{max-width:700px;margin:10px auto 0;opacity:.9;}
-    main{max-width:var(--maxw);background:var(--card);margin:-40px auto 60px;border-radius:14px;
-         box-shadow:0 6px 30px rgba(0,0,0,.08);padding:36px 30px;}
-    h2{color:var(--accent);border-left:4px solid var(--accent2);padding-left:10px;margin-top:34px;}
-    a{color:var(--accent2);text-decoration:none;}
-    a:hover{text-decoration:underline;}
-    .cta{display:inline-block;background:var(--accent2);color:#fff;padding:14px 24px;font-weight:600;
-         border-radius:8px;font-size:1rem;margin-top:14px;transition:background .2s;}
-    .cta:hover{background:#256427;}
-    .inputBox{margin-top:16px;display:flex;flex-direction:column;gap:8px;}
-    input[type="text"]{padding:12px;border:1px solid #ccc;border-radius:8px;font-size:1rem;width:100%;box-sizing:border-box;}
-    #message{margin-top:20px;font-weight:500;color:var(--muted);white-space:pre-line;}
-    footer{text-align:center;font-size:13px;color:var(--muted);margin-top:40px;}
-    footer a{color:var(--accent);}
+    /* keep your previous styles */
   </style>
 </head>
-
 <body>
   <header>
-    <h1>FEU Grade Calculator — Activation Web App</h1>
-    <p>Activate your FEU Grade Calculator spreadsheet securely through your Google account.</p>
+    <h1>FEU Grade Calculator Activation</h1>
+    <p>Activate your spreadsheet and connect securely with Google Apps Script.</p>
   </header>
-
   <main>
     <h2>Activate Your Spreadsheet</h2>
-    <p>Paste your <strong>Spreadsheet ID</strong> below or use the pre-filled link from your Sheet.</p>
-    <div class="inputBox">
-      <label for="spreadsheetId"><strong>Spreadsheet ID:</strong></label>
-      <input type="text" id="spreadsheetId" placeholder="e.g. 1a2b3c4d5e6f7g8h9i..." />
-      <button class="cta" id="activateBtn">Activate</button>
-      <div id="message"></div>
-    </div>
+    <p>Enter your spreadsheet ID or open this page using the format:<br><code>https://feu.jareddo06.ovh/app?id=YOUR_SHEET_ID</code></p>
+    
+    <form id="activationForm">
+      <input type="text" id="sheetId" placeholder="Spreadsheet ID" required style="width:100%;padding:10px;font-size:1rem;margin:10px 0;">
+      <button type="submit" class="cta">🔑 Activate</button>
+    </form>
 
-    <hr />
-    <p>Having issues? Read the <a href="/privacy" target="_blank">Privacy Policy</a> or contact 
-       <a href="mailto:miguel@jareddo06.ovh">miguel@jareddo06.ovh</a>.</p>
+    <p id="result" style="margin-top:20px;font-weight:500;"></p>
   </main>
-
   <footer>
-    <p>© 2025 FEU Grade Calculator 
+    <p>&copy; 2025 FEU Grade Calculator | <a href="/privacy">Privacy Policy</a></p>
   </footer>
 
   <script>
-    const backendURL = "https://script.google.com/macros/s/AKfycbxboKL8UPk5VuuyqWDCb8x_RZDlGXQ85MgsdjKk4InOvViO4BTbFxWH-TAbg1zGTD7K/exec";
+    const sheetInput = document.getElementById("sheetId");
     const urlParams = new URLSearchParams(window.location.search);
-    const spreadsheetIdParam = urlParams.get("id");
+    const sheetId = urlParams.get("id");
+    if (sheetId) sheetInput.value = sheetId;
 
-    const input = document.getElementById("spreadsheetId");
-    if (spreadsheetIdParam) input.value = spreadsheetIdParam;
-
-    const btn = document.getElementById("activateBtn");
-    const msg = document.getElementById("message");
-
-    btn.addEventListener("click", async () => {
-      const id = input.value.trim();
-      if (!id) return msg.textContent = "⚠️ Please enter a Spreadsheet ID first.";
-      msg.textContent = "⏳ Activating your spreadsheet... Please wait.";
+    document.getElementById("activationForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const id = sheetInput.value.trim();
+      const result = document.getElementById("result");
+      result.textContent = "Activating...";
       try {
-        const res = await fetch(`${backendURL}?id=${encodeURIComponent(id)}`);
+        const res = await fetch(
+          "https://script.google.com/macros/s/AKfycbxboKL8UPk5VuuyqWDCb8x_RZDlGXQ85MgsdjKk4InOvViO4BTbFxWH-TAbg1zGTD7K/exec?id=" + id
+        );
         const text = await res.text();
-        msg.textContent = text;
-        msg.style.color = text.includes("✅") ? "green" : (text.includes("❌") ? "red" : "#555");
-
-        // redirect to success page on success
-        if (text.includes("✅")) {
-          setTimeout(() => {
-            window.location.href = `/success?id=${encodeURIComponent(id)}`;
-          }, 2000);
+        if (text.includes("success")) {
+          window.location.href = "/success?id=" + id;
+        } else {
+          result.textContent = text || "Activation failed.";
         }
       } catch (err) {
-        msg.textContent = "❌ Network error or invalid backend link.";
-        msg.style.color = "red";
+        result.textContent = "Error: " + err.message;
       }
     });
   </script>
