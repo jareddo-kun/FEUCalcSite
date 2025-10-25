@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Redirecting…</title>
+  <script>
+    // When user visits /app, /privacy, /success, etc.
+    (function () {
+      const path = window.location.pathname;
+
+      // Map clean URLs to real files
+      const redirects = {
+        "/": "/index.html",
+        "/app": "/app.html",
+        "/privacy": "/privacy.html",
+        "/success": "/success.html"
+      };
+
+      // Check if path matches a known route
+      if (redirects[path]) {
+        window.location.replace(redirects[path] + window.location.search + window.location.hash);
+      } else {
+        // fallback to homepage if path is unknown
+        window.location.replace("/index.html");
+      }
+    })();
+  </script>
+  <style>
+    body {
+      font-family: system-ui, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      color: #444;
+    }
+  </style>
+</head>
+<body>
+  Redirecting…
+</body>
+</html>
