@@ -1,13 +1,208 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>FEU Grade Calculator</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>FEU Grade Calculator — Activation Web App</title>
+  <meta name="description" content="Official activation web app for FEU Grade Calculator. Activate, configure, and manage your copy securely through Google Apps Script." />
+  <link rel="canonical" href="https://feu.jareddo06.ovh/" />
+  <link rel="icon" href="https://ssl.gstatic.com/docs/doclist/images/icon_11_spreadsheet_list.png" type="image/png" />
+  <style>
+    :root {
+      --bg: #fafafa;
+      --card: #fff;
+      --accent: #1a237e;
+      --accent2: #2e7d32;
+      --muted: #555;
+      --maxw: 880px;
+    }
+    body {
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+      background: var(--bg);
+      color: #222;
+      margin: 0;
+      line-height: 1.6;
+    }
+    header {
+      background: var(--accent);
+      color: white;
+      text-align: center;
+      padding: 48px 16px 56px;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2rem;
+      letter-spacing: 0.3px;
+    }
+    header p {
+      max-width: 700px;
+      margin: 10px auto 0;
+      font-weight: 400;
+      font-size: 1.05rem;
+      opacity: 0.9;
+    }
+    main {
+      max-width: var(--maxw);
+      background: var(--card);
+      margin: -40px auto 60px;
+      border-radius: 14px;
+      box-shadow: 0 6px 30px rgba(0, 0, 0, 0.08);
+      padding: 36px 30px;
+    }
+    h2 {
+      color: var(--accent);
+      border-left: 4px solid var(--accent2);
+      padding-left: 10px;
+      margin-top: 34px;
+      margin-bottom: 10px;
+      font-size: 1.4rem;
+    }
+    p, li {
+      color: #222;
+    }
+    a {
+      color: var(--accent2);
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    .cta {
+      display: inline-block;
+      background: var(--accent2);
+      color: white;
+      padding: 14px 24px;
+      font-weight: 600;
+      border-radius: 8px;
+      font-size: 1rem;
+      margin-top: 14px;
+      transition: background 0.2s ease;
+    }
+    .cta:hover {
+      background: #256427;
+    }
+    ul {
+      margin-left: 1.2rem;
+    }
+    hr {
+      margin: 40px 0;
+      border: none;
+      border-top: 1px solid #eee;
+    }
+    footer {
+      text-align: center;
+      font-size: 13px;
+      color: var(--muted);
+      margin-top: 40px;
+    }
+    footer a {
+      color: var(--accent);
+    }
+  </style>
 </head>
-<body style="font-family:Arial;max-width:700px;margin:40px auto;padding:20px;">
-  <h1>FEU Grade Calculator</h1>
-  <p>This web app activates and manages a Google Sheets–based grade calculator. It only modifies the user’s copy of the spreadsheet after explicit authorization.</p>
-  <p><a href="privacy.html">Privacy Policy</a></p>
+
+<body>
+  <header>
+    <h1>FEU Grade Calculator — Activation Web App</h1>
+    <p>Activate and manage your own FEU Grade Calculator Google Sheet securely through Google Apps Script.</p>
+    <a href="https://jareddo-kun.github.io/FEUCalcSite/" class="cta">🚀 Launch the Web App</a>
+  </header>
+
+  <main>
+    <section>
+      <h2>🌐 Live App</h2>
+      <p>
+        You can launch the app directly in your browser:
+        <br>
+        <strong><a href="https://jareddo-kun.github.io/FEUCalcSite/" target="_blank">https://jareddo-kun.github.io/FEUCalcSite/</a></strong>
+      </p>
+      <p class="muted">
+        The app runs completely client-side and communicates only with your Google account through a verified Apps Script connection.
+      </p>
+    </section>
+
+    <section>
+      <h2>🧩 Features</h2>
+      <ul>
+        <li>Automatically activates the FEU Grade Calculator spreadsheet.</li>
+        <li>Configures Apps Script triggers and setup scripts.</li>
+        <li>Protects essential formula cells from accidental edits.</li>
+        <li>Clean and lightweight HTML + JavaScript interface.</li>
+        <li>Hosted on GitHub Pages with Google Apps Script integration.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>⚙️ How It Works</h2>
+      <ol>
+        <li>Open the web app — you’ll see a simple activation interface.</li>
+        <li>Enter your <strong>Spreadsheet ID</strong> (from your Sheet URL).</li>
+        <li>The app securely connects to the Apps Script backend (<code>Code.gs</code>).</li>
+        <li>The script performs activation and setup automatically.</li>
+        <li>When finished, a success message confirms activation.</li>
+      </ol>
+    </section>
+
+    <section>
+      <h2>🔐 Privacy & Security</h2>
+      <p>
+        This app only accesses the spreadsheets you authorize. It:
+      </p>
+      <ul>
+        <li>Operates entirely within Google’s secure Apps Script environment.</li>
+        <li>Does <strong>not</strong> collect or store personal data externally.</li>
+        <li>Is open-source and auditable for transparency.</li>
+      </ul>
+      <p>See the full policy here:  
+      <br>🔗 <a href="https://feu.jareddo06.ovh/privacy.html" target="_blank">Privacy Policy</a></p>
+    </section>
+
+    <section>
+      <h2>🧠 Tech Stack</h2>
+      <ul>
+        <li><strong>Frontend:</strong> HTML, CSS, JavaScript (client-side only)</li>
+        <li><strong>Backend:</strong> Google Apps Script (<code>Code.gs</code>)</li>
+        <li><strong>Hosting:</strong> GitHub Pages</li>
+        <li><strong>APIs:</strong> Google Sheets API via Apps Script</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>🪜 Setup Guide (Developers)</h2>
+      <ol>
+        <li>Fork or clone this repository.</li>
+        <li>Modify the HTML and JavaScript files as needed.</li>
+        <li>In Google Apps Script:
+          <ul>
+            <li>Paste your backend code (<code>Code.gs</code>).</li>
+            <li>Deploy as a Web App (execute as <em>me</em>, access by <em>anyone</em>).</li>
+          </ul>
+        </li>
+        <li>Update the script URL in <code>index.html</code>.</li>
+        <li>Push to GitHub — Pages redeploys automatically.</li>
+      </ol>
+    </section>
+
+    <section>
+      <h2>🧾 License</h2>
+      <p>
+        Licensed under the <strong>MIT License</strong> — you are free to reuse, modify, and distribute with attribution.
+      </p>
+    </section>
+
+    <section>
+      <h2>📬 Contact</h2>
+      <p>
+        For inquiries or support, reach out via email:
+        <br><strong>miguel@jareddo06.ovh</strong>
+      </p>
+    </section>
+
+    <hr>
+
+    <footer>
+      <p>© 2025 FEU Grade Calculator Activator. Hosted on <a href="https://pages.github.com/" target="_blank">GitHub Pages</a> • <a href="https://feu.jareddo06.ovh/privacy.html" target="_blank">Privacy Policy</a></p>
+    </footer>
+  </main>
 </body>
 </html>
